@@ -1,0 +1,15 @@
+/*
+    * @author : Supun Jaysinghe
+    * Date    : 29 March 2023
+    * Time    : 12:50 PM
+    * Project : D24 Hotel
+    * Created by IntelliJ IDEA.
+*/
+.body{
+    -fx-background-image: url(image/5192479.jpg);
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+
+}

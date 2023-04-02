@@ -1,0 +1,51 @@
+/*
+    * @author : Supun Jaysinghe
+    * Date    : 02 April 2023
+    * Time    : 3:46 PM
+    * Project : Assignment
+    * Created by IntelliJ IDEA.
+*/
+.body{
+    -fx-background-image: url(image/login_background.png);
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-opacity:100%;
+
+}
+
+.caractor{
+    -fx-background-image: url(image/BOY_1.png);
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+}
+
+.buttonLogin{
+    -fx-background-radius: 33;
+    /*-fx-background-color: linear-gradient(to bottom right, #661aff,#005ce6);*/
+    -fx-background-color: linear-gradient(to bottom left,#4950dc,#2d0680);
+    /*-fx-background-color: linear-gradient(to bottom left,#00ffbf,#00ffff);*/
+    /*-fx-background-color: linear-gradient(to bottom left,	#0040ff,#00ffff);*/
+    /*-fx-background-color:#0040ff ;*/
+
+    -fx-font-family: Arial ;
+    -fx-font-size: 28;
+    /*-fx-border-radius: 22;*/
+    /*-fx-border-color: #9c67c2;*/
+}
+.buttonSignup{
+    -fx-background-radius: 33;
+    /*-fx-background-color: linear-gradient(to bottom right, #661aff,#005ce6);*/
+    -fx-background-color: linear-gradient(to bottom left, #00ff80,#00ffff);
+    /*-fx-background-color: linear-gradient(to bottom left,#00ffbf,#00ffff);*/
+    /*-fx-background-color: linear-gradient(to bottom left,	#0040ff,#00ffff);*/
+    /*-fx-background-color:#0040ff ;*/
+
+    -fx-font-family: Arial ;
+    -fx-font-size: 25;
+    /*-fx-border-radius: 22;*/
+    /*-fx-border-color: #9c67c2;*/
+}
