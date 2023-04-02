@@ -9,25 +9,31 @@ package lk.ccns.d24.controller;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.event.ActionEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ccns.d24.util.Navigation;
+import lk.ccns.d24.util.Routes;
+
+import java.io.IOException;
 
 public class LoginFormController {
     public AnchorPane loginFormAP;
     public JFXTextField txtUserName;
     public JFXPasswordField txtPassword;
 
-    public void viewPasswordOnAction(MouseEvent mouseEvent) {
+    public void forgotPasswordOnAction(javafx.scene.input.MouseEvent mouseEvent) {
     }
 
-    public void loginOnAction(ActionEvent actionEvent) {
+    public void signupOnAction(javafx.event.ActionEvent actionEvent) {
     }
 
-    public void signupOnAction(ActionEvent actionEvent) {
+    public void loginOnAction(javafx.event.ActionEvent actionEvent) {
+        try {
+            Navigation.navigate(Routes.DASHBOARD,loginFormAP);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void forgotPasswordOnAction(MouseEvent mouseEvent) {
-
+    public void viewPasswordOnAction(javafx.scene.input.MouseEvent mouseEvent) {
     }
 }

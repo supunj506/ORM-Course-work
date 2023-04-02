@@ -3,87 +3,109 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.*?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="loginFormAP" prefHeight="771.0" prefWidth="1133.0" styleClass="body" stylesheets="@asset/stylesheet/styleForLoginForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ccns.d24.controller.LoginFormController">
-   <HBox prefHeight="726.0" prefWidth="1063.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <AnchorPane prefHeight="726.0" prefWidth="459.0" styleClass="caractor" stylesheets="@asset/stylesheet/styleForLoginForm.css" HBox.hgrow="ALWAYS" />
-      <AnchorPane prefHeight="726.0" prefWidth="597.0" HBox.hgrow="ALWAYS">
-         <Label layoutX="-68.0" layoutY="67.0" prefHeight="79.0" prefWidth="689.0" text="Welcome to D24 Hotel System !" textAlignment="CENTER" AnchorPane.leftAnchor="-68.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="67.0">
-            <font>
-               <Font name="System Bold" size="46.0" />
-            </font>
-         </Label>
-         <Pane layoutX="33.0" layoutY="158.0" prefHeight="569.0" prefWidth="584.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-opacity: 100%;" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="158.0">
-            <JFXTextField fx:id="txtUserName" focusColor="#073fe6" layoutX="13.0" layoutY="28.0" prefHeight="51.0" prefWidth="553.0" promptText="User Name" style="-fx-font-color: black;" unFocusColor="BLACK">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <effect>
-                  <Glow />
-               </effect>
-            </JFXTextField>
-            <JFXPasswordField fx:id="txtPassword" layoutX="9.0" layoutY="131.0" prefHeight="51.0" prefWidth="553.0" promptText="Password">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXPasswordField>
-            <ImageView fitHeight="25.0" fitWidth="50.0" layoutX="530.0" layoutY="144.0" onMouseClicked="#viewPasswordOnAction" pickOnBounds="true" preserveRatio="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <Image url="@asset/stylesheet/icon/icons8-eye-24.png" />
-            </ImageView>
-            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="252.0" onAction="#loginOnAction" prefHeight="65.0" prefWidth="414.0" styleClass="buttonLogin" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Log in" textFill="WHITE">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="394.0" onAction="#signupOnAction" prefHeight="65.0" prefWidth="414.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Sign up">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label layoutX="271.0" layoutY="349.0" text="OR">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="227.0" layoutY="495.0" onMouseClicked="#forgotPasswordOnAction" text="Forgot password?" textFill="#fffefe">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Line endX="111.66668701171875" layoutX="152.0" layoutY="360.0" startX="-67.66668701171875" />
-            <Line endX="106.33331298828125" layoutX="392.0" layoutY="360.0" startX="-93.0" />
-         </Pane>
-      </AnchorPane>
-   </HBox>
-   <ImageView fitHeight="91.0" fitWidth="183.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="628.193977355957" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="26.0">
-      <Image url="@asset/logo/d24_hotel_logo.png" />
-   </ImageView>
+<?import javafx.scene.text.*?>
+<AnchorPane fx:id="loginFormAP" prefHeight="771.0" prefWidth="1133.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ccns.d24.controller.LoginFormController">
+    <AnchorPane prefHeight="771.0" prefWidth="1133.0" styleClass="body"
+                stylesheets="@asset/stylesheet/styleForLoginForm.css" AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox prefHeight="726.0" prefWidth="1063.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane prefHeight="726.0" prefWidth="459.0" styleClass="caractor"
+                        stylesheets="@asset/stylesheet/styleForLoginForm.css" HBox.hgrow="ALWAYS"/>
+            <AnchorPane prefHeight="726.0" prefWidth="597.0" HBox.hgrow="ALWAYS">
+                <Label layoutX="-68.0" layoutY="67.0" prefHeight="79.0" prefWidth="689.0"
+                       text="Welcome to D24 Hotel System !" textAlignment="CENTER" AnchorPane.leftAnchor="-68.0"
+                       AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="67.0">
+                    <font>
+                        <Font name="System Bold" size="46.0"/>
+                    </font>
+                </Label>
+                <Pane layoutX="33.0" layoutY="158.0" prefHeight="569.0" prefWidth="584.0"
+                      style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-opacity: 100%;"
+                      AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="32.0"
+                      AnchorPane.topAnchor="158.0">
+                    <JFXTextField fx:id="txtUserName" focusColor="#073fe6" layoutX="13.0" layoutY="28.0"
+                                  prefHeight="51.0"
+                                  prefWidth="553.0" promptText="User Name" style="-fx-font-color: black;"
+                                  unFocusColor="BLACK">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="TEXT"/>
+                        </cursor>
+                        <effect>
+                            <Glow/>
+                        </effect>
+                    </JFXTextField>
+                    <JFXPasswordField fx:id="txtPassword" layoutX="9.0" layoutY="131.0" prefHeight="51.0"
+                                      prefWidth="553.0"
+                                      promptText="Password">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="TEXT"/>
+                        </cursor>
+                    </JFXPasswordField>
+                    <ImageView fitHeight="25.0" fitWidth="50.0" layoutX="530.0" layoutY="144.0"
+                               onMouseClicked="#viewPasswordOnAction" pickOnBounds="true" preserveRatio="true">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <Image url="@asset/stylesheet/icon/icons8-eye-24.png"/>
+                    </ImageView>
+                    <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="252.0"
+                               onAction="#loginOnAction" prefHeight="65.0" prefWidth="414.0" styleClass="buttonLogin"
+                               stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Log in" textFill="WHITE">
+                        <font>
+                            <Font size="25.0"/>
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                    </JFXButton>
+                    <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="394.0"
+                               onAction="#signupOnAction" prefHeight="65.0" prefWidth="414.0" styleClass="buttonSignup"
+                               stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Sign up">
+                        <font>
+                            <Font size="25.0"/>
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                    </JFXButton>
+                    <Label layoutX="271.0" layoutY="349.0" text="OR">
+                        <font>
+                            <Font size="15.0"/>
+                        </font>
+                    </Label>
+                    <Label layoutX="227.0" layoutY="495.0" onMouseClicked="#forgotPasswordOnAction"
+                           text="Forgot password?"
+                           textFill="#fffefe">
+                        <font>
+                            <Font size="16.0"/>
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                    </Label>
+                    <Line endX="111.66668701171875" layoutX="152.0" layoutY="360.0" startX="-67.66668701171875"/>
+                    <Line endX="106.33331298828125" layoutX="392.0" layoutY="360.0" startX="-93.0"/>
+                </Pane>
+            </AnchorPane>
+        </HBox>
+        <ImageView fitHeight="91.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true"
+                   AnchorPane.bottomAnchor="628.193977355957" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="26.0">
+            <Image url="@asset/logo/d24_hotel_logo.png"/>
+        </ImageView>
+    </AnchorPane>
 </AnchorPane>
