@@ -43,7 +43,7 @@ public class Navigation {
                 break;
             case MAKE_RESERVE:
                 window.setTitle("Make Reservation Form");
-                initUI("MakeReservationForm.fxml");
+                initUI("ManageReservationForm.fxml");
                 break;
 
 

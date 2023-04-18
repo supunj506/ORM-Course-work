@@ -29,7 +29,7 @@ import lk.ccns.d24.dto.StudentDTO;
 import java.io.IOException;
 
 
-public class MakeReservationFormController {
+public class ManageReservationFormController {
     private final ManageReserveBO manageReserveBO = (ManageReserveBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGE_RESERVE);
     private final ManageStudentBO manageStudentBO = (ManageStudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGE_STUDENT);
     private final ManageRoomBO manageRoomBO = (ManageRoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGE_ROOM);
@@ -62,6 +62,15 @@ public class MakeReservationFormController {
         setCmbData();
         setCmbStudentIdRoomIDData();
         loadReservationDetailsToTable();
+
+        txtName.setEditable(false);
+        txtAddress.setEditable(false);
+        txtContact.setEditable(false);
+        txtDOB.setEditable(false);
+        txtGender.setEditable(false);
+        txtType.setEditable(false);
+        txtQTY.setEditable(false);
+        txtKeyMoney.setEditable(false);
 
         reservationTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -207,7 +216,16 @@ public class MakeReservationFormController {
 
     public void updateReserveOnAction(MouseEvent mouseEvent) {
         try {
-            boolean isUpdate = manageReserveBO.updateReserveData(getReserveDTO());
+            boolean isUpdate = manageReserveBO.updateReserveData(
+                    new ReservationDTO(
+                            txtReservationId.getText(),
+                            dpReserveDate.getValue(),
+                            cmbStudentID.getValue().toString(),
+                            cmbRoomID.getValue().toString(),
+                            cmbPayStatus.getValue().toString()
+
+                    )
+            );
             cleanTextFieldOnAction(mouseEvent);
             loadReservationDetailsToTable();
         } catch (IOException e) {
@@ -228,9 +246,9 @@ public class MakeReservationFormController {
     private ReservationDTO getReserveDTO() {
         return new ReservationDTO(
                 txtReservationId.getText(),
-                cmbStudentID.getValue(),
-                cmbRoomID.getValue(),
-                cmbPayStatus.getValue()
+                cmbStudentID.getValue().toString(),
+                cmbRoomID.getValue().toString(),
+                cmbPayStatus.getValue().toString()
         );
     }
 }

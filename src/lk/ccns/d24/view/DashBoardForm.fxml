@@ -80,7 +80,7 @@
                         <Image url="@asset/stylesheet/icon/icons8-more-details-100.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="59.0" layoutY="29.0" text="Manage Reserve">
+                  <Label layoutX="59.0" layoutY="29.0" text="Reservation">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -97,7 +97,7 @@
                         <Image url="@asset/stylesheet/icon/icons8-add-administrator-100.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="59.0" layoutY="29.0" text="Manage student">
+                  <Label layoutX="59.0" layoutY="29.0" text="Student">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -114,7 +114,7 @@
                         <Image url="@asset/stylesheet/icon/icons8-double-bed-100.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="59.0" layoutY="29.0" text="Manage Room">
+                  <Label layoutX="59.0" layoutY="29.0" text="Room">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

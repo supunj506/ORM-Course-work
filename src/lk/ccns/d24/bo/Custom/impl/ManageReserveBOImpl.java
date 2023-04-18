@@ -45,7 +45,14 @@ public class ManageReserveBOImpl implements ManageReserveBO {
 
     @Override
     public boolean updateReserveData(ReservationDTO reserveDTO) throws IOException {
-        return reserveDAO.update(getReserveEntity(reserveDTO));
+        Student student = studentDAO.find(reserveDTO.getStudent_id());
+        Room room = roomDAO.find(reserveDTO.getRoom_id());
+        return reserveDAO.update(new Reservation(
+                reserveDTO.getReserve_id(),
+                reserveDTO.getDate(),
+                student,
+                room,
+                reserveDTO.getStatus()));
     }
 
     @Override
