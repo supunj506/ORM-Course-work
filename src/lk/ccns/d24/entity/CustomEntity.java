@@ -26,6 +26,12 @@ public class CustomEntity {
     public CustomEntity() {
     }
 
+    public CustomEntity(String student_id, String name, LocalDate date) {
+        this.student_id = student_id;
+        this.name = name;
+        this.date = date;
+    }
+
     public String getStudent_id() {
         return student_id;
     }

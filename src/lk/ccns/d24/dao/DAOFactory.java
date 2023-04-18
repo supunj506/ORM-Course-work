@@ -7,10 +7,7 @@
  */
 package lk.ccns.d24.dao;
 
-import lk.ccns.d24.dao.custom.impl.ReserveDAOImpl;
-import lk.ccns.d24.dao.custom.impl.RoomDAOImpl;
-import lk.ccns.d24.dao.custom.impl.StudentDAOImpl;
-import lk.ccns.d24.dao.custom.impl.UserDAOImpl;
+import lk.ccns.d24.dao.custom.impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -40,6 +37,8 @@ public class DAOFactory {
                 return new StudentDAOImpl();
             case RESERVE:
                 return new ReserveDAOImpl();
+            case QUERY_DAO:
+                return new QueryDAOImpl();
 
             default:
                 return null;

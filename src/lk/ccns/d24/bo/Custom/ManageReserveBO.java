@@ -11,6 +11,7 @@ package lk.ccns.d24.bo.Custom;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
 import lk.ccns.d24.bo.SuperBO;
+import lk.ccns.d24.dto.CustomDTO;
 import lk.ccns.d24.dto.ReservationDTO;
 
 import java.io.IOException;
@@ -24,5 +25,7 @@ public interface ManageReserveBO extends SuperBO {
     boolean updateReserveData(ReservationDTO reserveDTO) throws IOException;
 
     boolean deleteReserveData(ReservationDTO reserveDTO) throws IOException;
+
+    ObservableList<CustomDTO> getRemainingKeyMoneyStudentDetails() throws IOException;
 
 }

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,6 +32,16 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
+            <Label fx:id="lblTime" layoutX="903.0" layoutY="10.0" prefHeight="43.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDate" layoutX="749.0" layoutY="10.0" prefHeight="43.0" prefWidth="136.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <VBox layoutY="63.0" prefHeight="719.0" prefWidth="211.0" style="-fx-background-color: #22a6b3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="63.0">
@@ -41,7 +53,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Pane layoutX="68.0" layoutY="10.0" onMouseClicked="#userUpdateOnAction" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100;">
+                  <Pane layoutX="65.0" layoutY="7.0" onMouseClicked="#userUpdateOnAction" prefHeight="78.0" prefWidth="78.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100;">
                      <children>
                         <ImageView fitHeight="46.0" fitWidth="48.0" layoutX="15.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -126,15 +138,31 @@
             </Pane>
          </children>
       </VBox>
-      <AnchorPane fx:id="dashBoardMainAP" layoutX="211.0" layoutY="63.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0">
+      <AnchorPane fx:id="dashBoardMainAP" layoutX="211.0" layoutY="63.0" prefHeight="200.0" prefWidth="200.0" styleClass="body" stylesheets="@asset/stylesheet/styleSheetForDashBoard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0">
          <children>
-            <Pane prefHeight="43.0" prefWidth="939.0" style="-fx-background-color: #FDA7DF; -fx-border-radius: 30; -fx-background-radius: 30;">
+            <Pane prefHeight="43.0" prefWidth="939.0" style="-fx-background-color: #FDA7DF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="408.0" layoutY="6.0" text="Dash-Board">
                      <font>
                         <Font name="System Bold Italic" size="22.0" />
                      </font>
                   </Label>
+               </children>
+            </Pane>
+            <PieChart fx:id="availableQTYPieChart" layoutX="14.0" layoutY="54.0" prefHeight="360.0" prefWidth="450.0" style="-fx-background-color: #b6effa; -fx-background-radius: 30; -fx-font-size: 14;" />
+            <Label layoutX="126.0" layoutY="65.0" text="Remaining Room QTY">
+               <font>
+                  <Font name="System Bold Italic" size="22.0" />
+               </font>
+            </Label>
+            <Pane layoutX="14.0" layoutY="433.0" prefHeight="269.0" prefWidth="912.0" style="-fx-background-color: #b6effa; -fx-background-radius: 30;">
+               <children>
+                  <Label layoutX="70.0" layoutY="15.0" text="Remaining Keymoney Student">
+                     <font>
+                        <Font name="System Bold Italic" size="22.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="keyMoneyStudentListview" layoutX="34.0" layoutY="56.0" prefHeight="187.0" prefWidth="845.0" style="-fx-background-color: #b6effa; -fx-font-size: 18; -fx-background-radius: 30; -fx-border-radius: 30;" />
                </children>
             </Pane>
          </children></AnchorPane>
