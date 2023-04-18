@@ -1,15 +1,15 @@
 /*
  * @author : Supun Jaysinghe
- * Date    : 14 April 2023
- * Time    : 11:15 PM
+ * Date    : 18 April 2023
+ * Time    : 9:21 AM
  * Project : d24_hotel_manage_system
  * Created by IntelliJ IDEA.
  */
 package lk.ccns.d24.dao.custom.impl;
 
-import lk.ccns.d24.dao.custom.RoomDAO;
-import lk.ccns.d24.dto.RoomDTO;
-import lk.ccns.d24.entity.Room;
+import com.sun.xml.bind.v2.model.core.ID;
+import lk.ccns.d24.dao.custom.ReserveDAO;
+import lk.ccns.d24.entity.Reservation;
 import lk.ccns.d24.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -18,62 +18,58 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.util.List;
 
-public class RoomDAOImpl implements RoomDAO {
+public class ReserveDAOImpl implements ReserveDAO {
+
     @Override
-    public boolean add(Room room) throws IOException {
+    public boolean add(Reservation reservation) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        session.save(room);
+        session.save(reservation);
         transaction.commit();
         session.close();
         return true;
     }
 
     @Override
-    public boolean update(Room room) throws IOException {
+    public boolean update(Reservation reservation) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        session.update(room);
+        session.update(reservation);
         transaction.commit();
         session.close();
         return true;
     }
 
     @Override
-    public boolean delete(Room room) throws IOException {
+    public boolean delete(Reservation reservation) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(room);
+        session.delete(reservation);
         transaction.commit();
         session.close();
         return true;
     }
 
+
     @Override
-    public Room find(String roomId) throws IOException {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Room room = session.get(Room.class, roomId);
-        transaction.commit();
-        session.close();
-        return room;
+    public Reservation find(ID id) throws IOException {
+        return null;
     }
 
     @Override
-    public List<Room> findAll() throws IOException {
+    public List<Reservation> findAll() throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        List<Room> roomList=null;
-        Query from_room = session.createQuery("from Room");
-        roomList=from_room.list();
+        List<Reservation> reservationList = null;
+        Query from_reservation = session.createQuery("from Reservation ");
+        reservationList = from_reservation.list();
         transaction.commit();
         session.close();
-        return roomList;
+        return reservationList;
     }
 
     @Override
     public Session getSession() throws IOException {
-        return FactoryConfiguration.getInstance().getSession();
+        return null;
     }
-
 }

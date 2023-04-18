@@ -22,7 +22,7 @@ import lk.ccns.d24.dto.RoomDTO;
 
 import java.io.IOException;
 
-public class ManageRoomController {
+public class ManageRoomFormController {
     private final ManageRoomBO manageRoomBO= (ManageRoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGE_ROOM);
     public AnchorPane manageRoomAP;
     public JFXTextField txtRoomId;

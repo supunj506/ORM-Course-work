@@ -33,14 +33,19 @@ public class Navigation {
                 window.setTitle("DashBoard Form");
                 initUI("DashBoardForm.fxml");
                 break;
-            case ADDSTUDENT:
-                window.setTitle("Add Student Form");
-                initUI("AddStudentForm.fxml");
-                break;
-            case MANAGEROOM:
+            case MANAGE_ROOM:
                 window.setTitle("Manage Room Form");
                 initUI("ManageRoomForm.fxml");
                 break;
+            case MANAGE_STUDENT:
+                window.setTitle("Manage Student Form");
+                initUI("ManageStudentForm.fxml");
+                break;
+            case MAKE_RESERVE:
+                window.setTitle("Make Reservation Form");
+                initUI("MakeReservationForm.fxml");
+                break;
+
 
             default:
                 new Alert(Alert.AlertType.ERROR, "UI Not Found!").show();

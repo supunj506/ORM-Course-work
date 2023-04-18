@@ -1,14 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane fx:id="dashBoardAP" prefHeight="782.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ccns.d24.controller.DashBoardFormController">
+   <children>
+      <AnchorPane prefHeight="63.0" prefWidth="1150.0" style="-fx-background-color: #22a6b3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="120.0" layoutX="30.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@asset/logo/d24_logo.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="1031.0" layoutY="7.0" onMouseClicked="#logOutOnAction" prefHeight="46.0" prefWidth="99.0" style="-fx-background-color: #EA2027; -fx-background-radius: 30;" AnchorPane.bottomAnchor="8.5" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="8.5">
+               <children>
+                  <Label layoutX="14.0" layoutY="9.0" text="Log-Out">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <VBox layoutY="63.0" prefHeight="719.0" prefWidth="211.0" style="-fx-background-color: #22a6b3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="63.0">
+         <children>
+            <Pane prefHeight="111.0" prefWidth="211.0">
+               <children>
+                  <Label fx:id="lbluserName" layoutX="78.0" layoutY="84.0" prefHeight="27.0" prefWidth="56.0" text="supun" textOverrun="CLIP">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="68.0" layoutY="10.0" onMouseClicked="#userUpdateOnAction" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100;">
+                     <children>
+                        <ImageView fitHeight="46.0" fitWidth="48.0" layoutX="15.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@asset/stylesheet/icon/icons8-user-100.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane prefHeight="19.0" prefWidth="184.0" />
+            <Pane layoutX="10.0" layoutY="112.0" onMouseClicked="#dashBoardNavigateOnAction" prefHeight="78.0" prefWidth="184.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@asset/stylesheet/icon/homeWhite.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="59.0" layoutY="29.0" text="Dash-Board">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane onMouseClicked="#reserveDetailsNavigateOnAction" prefHeight="78.0" prefWidth="184.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@asset/stylesheet/icon/icons8-more-details-100.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="59.0" layoutY="29.0" text="Manage Reserve">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="131.0" onMouseClicked="#manageStudentNavigateOnAction" prefHeight="78.0" prefWidth="184.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@asset/stylesheet/icon/icons8-add-administrator-100.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="59.0" layoutY="29.0" text="Manage student">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="209.0" onMouseClicked="#manageRoomNavigateOnAction" prefHeight="78.0" prefWidth="184.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@asset/stylesheet/icon/icons8-double-bed-100.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="59.0" layoutY="29.0" text="Manage Room">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="dashBoardMainAP" layoutX="211.0" layoutY="63.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0">
+         <children>
+            <Pane prefHeight="43.0" prefWidth="939.0" style="-fx-background-color: #FDA7DF; -fx-border-radius: 30; -fx-background-radius: 30;">
+               <children>
+                  <Label layoutX="408.0" layoutY="6.0" text="Dash-Board">
+                     <font>
+                        <Font name="System Bold Italic" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children></AnchorPane>
+   </children>
 </AnchorPane>

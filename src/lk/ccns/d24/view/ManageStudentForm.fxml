@@ -1,14 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane fx:id="manageStudentAP" prefHeight="691.0" prefWidth="939.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ccns.d24.controller.ManageStudentFormController">
+   <children>
+      <ImageView fitHeight="514.0" fitWidth="377.0" layoutX="562.0" layoutY="40.0" opacity="0.49" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <image>
+            <Image url="@asset/stylesheet/image/girlboy.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="txtId" labelFloat="true" layoutX="38.0" layoutY="84.0" prefHeight="39.0" prefWidth="213.0" promptText="Student ID" AnchorPane.leftAnchor="38.0" AnchorPane.topAnchor="84.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXTextField>
+      <JFXComboBox fx:id="cmbGender" layoutX="38.0" layoutY="161.0" prefHeight="39.0" prefWidth="213.0" promptText="Gender" style="-fx-font-size: 16;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXComboBox>
+      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="281.0" layoutY="84.0" prefHeight="39.0" prefWidth="213.0" promptText="Name" AnchorPane.leftAnchor="281.0" AnchorPane.topAnchor="84.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXTextField>
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="525.0" layoutY="84.0" prefHeight="39.0" prefWidth="213.0" promptText="Address" AnchorPane.leftAnchor="525.0" AnchorPane.topAnchor="84.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXTextField>
+      <JFXButton layoutX="224.0" layoutY="318.0" onAction="#addStudentOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="ADD" AnchorPane.leftAnchor="224.0" AnchorPane.topAnchor="318.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="399.0" layoutY="318.0" onAction="#UpdateStudentOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Update" AnchorPane.leftAnchor="399.0" AnchorPane.topAnchor="318.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="578.0" layoutY="318.0" onAction="#deleteStudentOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Delete">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="754.0" layoutY="318.0" onAction="#clearAllTextFieldOnAction" prefHeight="48.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Clear">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="183.0" layoutY="246.0" onAction="#searchRoomByIdOnAction" prefHeight="39.0" prefWidth="113.0" style="-fx-background-color: #D980FA; -fx-background-radius: 30;" text="Search">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXTextField fx:id="txtSearchById" labelFloat="true" layoutX="320.0" layoutY="246.0" prefHeight="39.0" prefWidth="254.0" promptText="By Student ID">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXTextField>
+      <TableView fx:id="studentTableView" layoutX="40.0" layoutY="385.0" prefHeight="279.0" prefWidth="861.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="134.99996948242188" style="-fx-font-size: 16;" text="Student ID" />
+            <TableColumn fx:id="colName" prefWidth="130.33331298828125" style="-fx-font-size: 16;" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="173.6666259765625" style="-fx-font-size: 16;" text="Address" />
+            <TableColumn fx:id="colContact" minWidth="0.0" prefWidth="170.3333740234375" style="-fx-font-size: 16;" text="Contact" />
+            <TableColumn fx:id="colDOB" minWidth="0.0" prefWidth="136.0" style="-fx-font-size: 16;" text="Date Of  Birth" />
+            <TableColumn fx:id="colGender" minWidth="0.0" prefWidth="114.0" style="-fx-font-size: 16;" text="Gender" />
+         </columns>
+      </TableView>
+      <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="524.0" layoutY="163.0" prefHeight="39.0" prefWidth="213.0" promptText="Contact NO ">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXTextField>
+      <JFXDatePicker fx:id="dpDOB" layoutX="281.0" layoutY="164.0" prefHeight="37.0" prefWidth="213.0" promptText="DOB" style="-fx-font-size: 16;" />
+      <Pane layoutX="-1.0" prefHeight="43.0" prefWidth="939.0" style="-fx-background-color: #FDA7DF; -fx-border-radius: 30; -fx-background-radius: 30;">
+         <children>
+            <Label layoutX="378.0" layoutY="5.0" prefHeight="32.0" prefWidth="184.0" text="Manage Student">
+               <font>
+                  <Font name="System Bold Italic" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>
