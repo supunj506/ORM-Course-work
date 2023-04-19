@@ -166,42 +166,42 @@
                   <ListView fx:id="keyMoneyStudentListview" layoutX="24.0" layoutY="53.0" prefHeight="139.0" prefWidth="608.0" style="-fx-background-color: #fdfff5; -fx-font-size: 18; -fx-background-radius: 30; -fx-border-radius: 30;" />
                </children>
             </Pane>
-            <ImageView fitHeight="444.0" fitWidth="367.0" layoutX="-1.0" layoutY="44.0" pickOnBounds="true">
+            <ImageView fitHeight="444.0" fitWidth="367.0" layoutX="22.0" layoutY="44.0" pickOnBounds="true">
                <image>
                   <Image url="@asset/stylesheet/image/bannerGirl.png" />
                </image>
             </ImageView>
-            <Label layoutX="44.0" layoutY="213.0" text="Reservation">
+            <Label layoutX="57.0" layoutY="213.0" text="Reservation">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="lblAccommodating" layoutX="82.0" layoutY="263.0" prefHeight="88.0" prefWidth="7.0">
+            <Label fx:id="lblAccommodating" layoutX="95.0" layoutY="263.0" prefHeight="88.0" prefWidth="7.0">
                <font>
                   <Font size="50.0" />
                </font>
             </Label>
-            <Label layoutX="174.0" layoutY="213.0" text="Remaining Keymoney ">
+            <Label layoutX="187.0" layoutY="213.0" text="Remaining Keymoney ">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="61.0" layoutY="232.0" text="Count">
+            <Label layoutX="74.0" layoutY="232.0" text="Count">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="216.0" layoutY="232.0" text="Student">
+            <Label layoutX="229.0" layoutY="232.0" text="Student">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="lblkeymoneyStudent" layoutX="239.0" layoutY="263.0" prefHeight="88.0" prefWidth="7.0" textFill="RED">
+            <Label fx:id="lblkeymoneyStudent" layoutX="252.0" layoutY="263.0" prefHeight="88.0" prefWidth="7.0" textFill="RED">
                <font>
                   <Font size="50.0" />
                </font>
             </Label>
-            <Separator layoutX="156.0" layoutY="218.0" orientation="VERTICAL" prefHeight="151.0" prefWidth="7.0" />
+            <Separator layoutX="169.0" layoutY="218.0" orientation="VERTICAL" prefHeight="151.0" prefWidth="7.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

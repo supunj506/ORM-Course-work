@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -22,7 +23,7 @@
             </Label>
          </children>
       </Pane>
-      <JFXTextField fx:id="txtReservationId" labelFloat="true" layoutX="91.0" layoutY="74.0" prefHeight="39.0" prefWidth="211.0" promptText="Reservation ID">
+      <JFXTextField fx:id="txtReservationId" labelFloat="true" layoutX="91.0" layoutY="74.0" onKeyReleased="#keyReleasedOnAction" prefHeight="39.0" prefWidth="211.0" promptText="Reservation ID">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -35,18 +36,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXComboBox>
-      <Pane layoutX="671.0" layoutY="491.0" onMouseClicked="#makeReserveOnAction" prefHeight="43.0" prefWidth="195.0" style="-fx-background-color: #4cd137; -fx-background-radius: 10;">
-         <children>
-            <Label layoutX="65.0" layoutY="8.0" text="Reserve">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Pane>
       <Pane layoutX="744.0" layoutY="431.0" onMouseClicked="#cleanTextFieldOnAction" prefHeight="43.0" prefWidth="105.0" style="-fx-background-color: #ff6b81; -fx-background-radius: 10;">
          <children>
             <Label layoutX="29.0" layoutY="8.0" prefHeight="27.0" prefWidth="48.0" text="Clean">
@@ -195,5 +184,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
+      <JFXButton fx:id="btnAddReserve" layoutX="656.0" layoutY="489.0" onAction="#makeReserveOnAction" prefHeight="43.0" prefWidth="195.0" style="-fx-background-color: #4cd137; -fx-background-radius: 10;" text="Reserve">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

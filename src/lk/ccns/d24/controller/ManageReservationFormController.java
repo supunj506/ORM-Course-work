@@ -7,6 +7,7 @@
  */
 package lk.ccns.d24.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -16,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ccns.d24.bo.BOFactory;
@@ -25,8 +28,12 @@ import lk.ccns.d24.bo.Custom.ManageStudentBO;
 import lk.ccns.d24.dto.ReservationDTO;
 import lk.ccns.d24.dto.RoomDTO;
 import lk.ccns.d24.dto.StudentDTO;
+import lk.ccns.d24.util.ValidateUtil;
+
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.regex.Pattern;
 
 
 public class ManageReservationFormController {
@@ -56,9 +63,14 @@ public class ManageReservationFormController {
     public TableColumn colRoomId;
     public TableColumn colStatus;
     public JFXTextField txtRoomQTY;
+    public JFXButton btnAddReserve;
 
+    LinkedHashMap<JFXTextField, Pattern> map=new LinkedHashMap<>();
 
     public void initialize() {
+        Pattern reserveIdPattern = Pattern.compile("^(RS-)[0-9]{3,5}$");
+        map.put(txtReservationId,reserveIdPattern);
+
         setCmbData();
         setCmbStudentIdRoomIDData();
         loadReservationDetailsToTable();
@@ -71,6 +83,8 @@ public class ManageReservationFormController {
         txtType.setEditable(false);
         txtQTY.setEditable(false);
         txtKeyMoney.setEditable(false);
+
+        btnAddReserve.setDisable(true);
 
         reservationTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -87,8 +101,29 @@ public class ManageReservationFormController {
 
     }
 
-    public void makeReserveOnAction(MouseEvent mouseEvent) {
+//    public void makeReserveOnAction(MouseEvent mouseEvent) {
+//        try {
+//            boolean isSave = manageReserveBO.saveReserve(getReservationDTO());
+//            if (isSave) {
+//                Boolean isUpdateQTY = manageRoomBO.update(new RoomDTO(
+//                        cmbRoomID.getValue(),
+//                        txtType.getText(),
+//                        Double.parseDouble(txtKeyMoney.getText()),
+//                        Integer.parseInt(txtQTY.getText()) - Integer.parseInt(txtRoomQTY.getText())
+//                ));
+//                cleanTextFieldOnAction(mouseEvent);
+//                loadReservationDetailsToTable();
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        cleanTextFieldOnAction(mouseEvent);
+//    }
+
+    public void makeReserveOnAction(ActionEvent actionEvent) {
         try {
+
             boolean isSave = manageReserveBO.saveReserve(getReservationDTO());
             if (isSave) {
                 Boolean isUpdateQTY = manageRoomBO.update(new RoomDTO(
@@ -97,14 +132,14 @@ public class ManageReservationFormController {
                         Double.parseDouble(txtKeyMoney.getText()),
                         Integer.parseInt(txtQTY.getText()) - Integer.parseInt(txtRoomQTY.getText())
                 ));
-                cleanTextFieldOnAction(mouseEvent);
+                cleanAll();
                 loadReservationDetailsToTable();
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cleanTextFieldOnAction(mouseEvent);
+        cleanAll();
     }
 
     private void setReserveDataToField(ReservationDTO newValue) {
@@ -250,5 +285,35 @@ public class ManageReservationFormController {
                 cmbRoomID.getValue().toString(),
                 cmbPayStatus.getValue().toString()
         );
+    }
+
+    public void keyReleasedOnAction(KeyEvent keyEvent) {
+        ValidateUtil.validate(map,btnAddReserve);
+
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            Object response = ValidateUtil.validate(map, btnAddReserve);
+            if (response instanceof JFXTextField) {
+                JFXTextField txt = (JFXTextField) response;
+                txt.requestFocus();
+            }
+
+        }
+    }
+
+    private void cleanAll() {
+        txtReservationId.clear();
+        cmbPayStatus.setValue(null);
+        dpReserveDate.setValue(null);
+        cmbStudentID.setValue(null);
+        txtName.clear();
+        txtAddress.clear();
+        txtContact.clear();
+        txtDOB.clear();
+        txtGender.clear();
+        cmbRoomID.setValue(null);
+        txtType.clear();
+        txtQTY.clear();
+        txtKeyMoney.clear();
+        txtRoomQTY.clear();
     }
 }
