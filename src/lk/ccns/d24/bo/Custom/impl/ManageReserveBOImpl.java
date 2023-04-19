@@ -73,10 +73,22 @@ public class ManageReserveBOImpl implements ManageReserveBO {
             allDetails.add(new CustomDTO(
                     custom.getDate(),
                     custom.getStudent_id(),
-                    custom.getName()
+                    custom.getName(),
+                    custom.getContact_no()
             ));
+
         }
         return allDetails;
+    }
+
+    @Override
+    public int getReserveCount() throws IOException {
+        int count=0;
+        List<Reservation> all = reserveDAO.findAll();
+        for(Reservation r:all){
+            count++;
+        }
+        return count;
     }
 
 

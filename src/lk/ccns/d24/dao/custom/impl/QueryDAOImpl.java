@@ -23,17 +23,19 @@ public class QueryDAOImpl implements QueryDAO {
     @Override
     public List<CustomEntity> getStudentDetail() throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
-        String sql="SELECT s.student_id ,s.name ,r.date FROM Student s INNER JOIN Reservation r ON s.student_id=r.student.id WHERE r.status='Later'";
+        String sql="SELECT s.student_id ,s.name,r.date ,s.contact FROM Student s inner JOIN Reservation r ON s.student_id=r.student.id  WHERE r.status='Later'";
         Query query = session.createQuery(sql);
         List<Object[]> list = query.list();
         List<CustomEntity> all=new ArrayList<>();
         for(Object[] objects:list){
-            all.add(new CustomEntity(
-                    objects[0].toString(),
-                    objects[1].toString(),
-                    LocalDate.parse(objects[2].toString()))
+           all.add(new CustomEntity(
+                   objects[0].toString(),
+                   objects[1].toString(),
+                   LocalDate.parse(objects[2].toString()),
+                   objects[3].toString()
+           ));
 
-            );
+
         }
         return all;
 

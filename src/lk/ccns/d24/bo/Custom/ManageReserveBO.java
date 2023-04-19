@@ -28,4 +28,5 @@ public interface ManageReserveBO extends SuperBO {
 
     ObservableList<CustomDTO> getRemainingKeyMoneyStudentDetails() throws IOException;
 
+    int getReserveCount() throws IOException;
 }

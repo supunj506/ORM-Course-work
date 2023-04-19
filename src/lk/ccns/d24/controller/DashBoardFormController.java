@@ -34,6 +34,8 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public class DashBoardFormController {
+
+
     ManageRoomBO manageRoomBO=(ManageRoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGE_ROOM);
     ManageReserveBO manageReserveBO=(ManageReserveBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGE_RESERVE);
 
@@ -44,11 +46,22 @@ public class DashBoardFormController {
     public ListView<String> keyMoneyStudentListview;
     public Label lblTime;
     public Label lblDate;
+    public Label lblAccommodating;
+    public Label lblkeymoneyStudent;
 
     public void initialize(){
         setDataToPieChart();
         setRemainigKeyMoneyStudentListView();
         loadTimeDate();
+        setReserveCount();
+    }
+
+    private void setReserveCount() {
+        try {
+            lblAccommodating.setText(String.valueOf(manageReserveBO.getReserveCount()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadTimeDate() {
@@ -65,15 +78,20 @@ public class DashBoardFormController {
     }
 
     private void setRemainigKeyMoneyStudentListView() {
+        int count=0;
         try {
             ObservableList<CustomDTO> student=manageReserveBO.getRemainingKeyMoneyStudentDetails();
             ObservableList<String> listViewData=FXCollections.observableArrayList();
             for(CustomDTO customDTO:student){
-                listViewData.add(customDTO.getStudent_id()+" / "+customDTO.getName()+" / "+customDTO.getDate());
-
-
+                listViewData.add(customDTO.getStudent_id()
+                        + " / "+customDTO.getName()
+                        +" / " +customDTO.getDate()
+                        +" / " +customDTO.getContact()
+                );
+                count++;
             }
             keyMoneyStudentListview.setItems(listViewData);
+            lblkeymoneyStudent.setText(String.valueOf(count));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -133,12 +151,15 @@ public class DashBoardFormController {
         }
     }
 
-
     public void reserveDetailsNavigateOnAction(MouseEvent mouseEvent) {
         try {
             Navigation.navigate(Routes.MAKE_RESERVE,dashBoardMainAP);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void showDetailNavigateOnAction(MouseEvent mouseEvent) {
+
     }
 }

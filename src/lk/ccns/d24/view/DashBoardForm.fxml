@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -89,7 +90,7 @@
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@asset/stylesheet/icon/icons8-more-details-100.png" />
+                        <Image url="@asset/stylesheet/icon/icons8-reserve-100.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="59.0" layoutY="29.0" text="Reservation">
@@ -106,7 +107,7 @@
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@asset/stylesheet/icon/icons8-add-administrator-100.png" />
+                        <Image url="@asset/stylesheet/icon/icons8-add-user-male-52.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="59.0" layoutY="29.0" text="Student">
@@ -149,22 +150,58 @@
                   </Label>
                </children>
             </Pane>
-            <PieChart fx:id="availableQTYPieChart" layoutX="14.0" layoutY="54.0" prefHeight="360.0" prefWidth="450.0" style="-fx-background-color: #b6effa; -fx-background-radius: 30; -fx-font-size: 14;" />
-            <Label layoutX="126.0" layoutY="65.0" text="Remaining Room QTY">
+            <PieChart fx:id="availableQTYPieChart" layoutX="464.0" layoutY="59.0" prefHeight="360.0" prefWidth="476.0" style="-fx-background-color: #fdfff5; -fx-background-radius: 30; -fx-font-size: 14;" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="59.0" />
+            <Label layoutX="568.0" layoutY="68.0" text="Available Room QTY">
                <font>
                   <Font name="System Bold Italic" size="22.0" />
                </font>
             </Label>
-            <Pane layoutX="14.0" layoutY="433.0" prefHeight="269.0" prefWidth="912.0" style="-fx-background-color: #b6effa; -fx-background-radius: 30;">
+            <Pane layoutX="319.0" layoutY="436.0" prefHeight="269.0" prefWidth="595.0" style="-fx-background-color: #fdfff5; -fx-background-radius: 30;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="319.0">
                <children>
-                  <Label layoutX="70.0" layoutY="15.0" text="Remaining Keymoney Student">
+                  <Label layoutX="143.0" layoutY="14.0" text="Remaining Keymoney Student">
                      <font>
                         <Font name="System Bold Italic" size="22.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="keyMoneyStudentListview" layoutX="34.0" layoutY="56.0" prefHeight="187.0" prefWidth="845.0" style="-fx-background-color: #b6effa; -fx-font-size: 18; -fx-background-radius: 30; -fx-border-radius: 30;" />
+                  <ListView fx:id="keyMoneyStudentListview" layoutX="24.0" layoutY="58.0" prefHeight="194.0" prefWidth="547.0" style="-fx-background-color: #fdfff5; -fx-font-size: 18; -fx-background-radius: 30; -fx-border-radius: 30;" />
                </children>
             </Pane>
+            <ImageView fitHeight="498.0" fitWidth="419.0" layoutX="-1.0" layoutY="44.0" pickOnBounds="true">
+               <image>
+                  <Image url="@asset/stylesheet/image/bannerGirl.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="54.0" layoutY="229.0" text="Reservation">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAccommodating" layoutX="93.0" layoutY="293.0" prefHeight="88.0" prefWidth="7.0">
+               <font>
+                  <Font size="60.0" />
+               </font>
+            </Label>
+            <Label layoutX="184.0" layoutY="229.0" text="Remaining Keymoney ">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="81.0" layoutY="248.0" text="Count">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="252.0" layoutY="250.0" text="Student">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblkeymoneyStudent" layoutX="270.0" layoutY="293.0" prefHeight="88.0" prefWidth="7.0" textFill="RED">
+               <font>
+                  <Font size="60.0" />
+               </font>
+            </Label>
+            <Separator layoutX="173.0" layoutY="223.0" orientation="VERTICAL" prefHeight="185.0" prefWidth="7.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>
