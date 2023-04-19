@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,7 +30,6 @@ import lk.ccns.d24.dto.ReservationDTO;
 import lk.ccns.d24.dto.RoomDTO;
 import lk.ccns.d24.dto.StudentDTO;
 import lk.ccns.d24.util.ValidateUtil;
-
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -65,11 +65,11 @@ public class ManageReservationFormController {
     public JFXTextField txtRoomQTY;
     public JFXButton btnAddReserve;
 
-    LinkedHashMap<JFXTextField, Pattern> map=new LinkedHashMap<>();
+    LinkedHashMap<JFXTextField, Pattern> map = new LinkedHashMap<>();
 
     public void initialize() {
         Pattern reserveIdPattern = Pattern.compile("^(RS-)[0-9]{3,5}$");
-        map.put(txtReservationId,reserveIdPattern);
+        map.put(txtReservationId, reserveIdPattern);
 
         setCmbData();
         setCmbStudentIdRoomIDData();
@@ -101,45 +101,35 @@ public class ManageReservationFormController {
 
     }
 
-//    public void makeReserveOnAction(MouseEvent mouseEvent) {
-//        try {
-//            boolean isSave = manageReserveBO.saveReserve(getReservationDTO());
-//            if (isSave) {
-//                Boolean isUpdateQTY = manageRoomBO.update(new RoomDTO(
-//                        cmbRoomID.getValue(),
-//                        txtType.getText(),
-//                        Double.parseDouble(txtKeyMoney.getText()),
-//                        Integer.parseInt(txtQTY.getText()) - Integer.parseInt(txtRoomQTY.getText())
-//                ));
-//                cleanTextFieldOnAction(mouseEvent);
-//                loadReservationDetailsToTable();
-//            }
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        cleanTextFieldOnAction(mouseEvent);
-//    }
-
     public void makeReserveOnAction(ActionEvent actionEvent) {
         try {
-
-            boolean isSave = manageReserveBO.saveReserve(getReservationDTO());
-            if (isSave) {
-                Boolean isUpdateQTY = manageRoomBO.update(new RoomDTO(
-                        cmbRoomID.getValue(),
-                        txtType.getText(),
-                        Double.parseDouble(txtKeyMoney.getText()),
-                        Integer.parseInt(txtQTY.getText()) - Integer.parseInt(txtRoomQTY.getText())
-                ));
-                cleanAll();
-                loadReservationDetailsToTable();
+            if (cmbPayStatus.getValue() != null &&
+                    cmbRoomID.getValue() != null &&
+                    cmbStudentID.getValue() != null &&
+                    !txtRoomQTY.getText().trim().isEmpty()) {
+                if (Integer.parseInt(txtRoomQTY.getText()) > Integer.parseInt(txtQTY.getText())) {
+                    new Alert(Alert.AlertType.ERROR, "That Much Quantity Doesn't Exist..!!!").show();
+                }else {
+                    boolean isSave = manageReserveBO.saveReserve(getReservationDTO());
+                    if (isSave) {
+                        Boolean isUpdateQTY = manageRoomBO.update(new RoomDTO(
+                                cmbRoomID.getValue(),
+                                txtType.getText(),
+                                Double.parseDouble(txtKeyMoney.getText()),
+                                Integer.parseInt(txtQTY.getText()) - Integer.parseInt(txtRoomQTY.getText())
+                        ));
+                        cleanAll();
+                        loadReservationDetailsToTable();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Make A Reservation Successfully...!!!").show();
+                    }
+                }
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Empty Field Found Check Carefully !!!").show();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cleanAll();
+
     }
 
     private void setReserveDataToField(ReservationDTO newValue) {
@@ -223,21 +213,7 @@ public class ManageReservationFormController {
     }
 
     public void cleanTextFieldOnAction(MouseEvent mouseEvent) {
-        txtReservationId.clear();
-        cmbPayStatus.setValue(null);
-        dpReserveDate.setValue(null);
-        cmbStudentID.setValue(null);
-        txtName.clear();
-        txtAddress.clear();
-        txtContact.clear();
-        txtDOB.clear();
-        txtGender.clear();
-        cmbRoomID.setValue(null);
-        txtType.clear();
-        txtQTY.clear();
-        txtKeyMoney.clear();
-        txtRoomQTY.clear();
-
+        cleanAll();
     }
 
     public void selectStudentIdOnAction(ActionEvent actionEvent) {
@@ -255,9 +231,9 @@ public class ManageReservationFormController {
                     new ReservationDTO(
                             txtReservationId.getText(),
                             dpReserveDate.getValue(),
-                            cmbStudentID.getValue().toString(),
-                            cmbRoomID.getValue().toString(),
-                            cmbPayStatus.getValue().toString()
+                            cmbStudentID.getValue(),
+                            cmbRoomID.getValue(),
+                            cmbPayStatus.getValue()
 
                     )
             );
@@ -281,14 +257,14 @@ public class ManageReservationFormController {
     private ReservationDTO getReserveDTO() {
         return new ReservationDTO(
                 txtReservationId.getText(),
-                cmbStudentID.getValue().toString(),
-                cmbRoomID.getValue().toString(),
-                cmbPayStatus.getValue().toString()
+                cmbStudentID.getValue(),
+                cmbRoomID.getValue(),
+                cmbPayStatus.getValue()
         );
     }
 
     public void keyReleasedOnAction(KeyEvent keyEvent) {
-        ValidateUtil.validate(map,btnAddReserve);
+        ValidateUtil.validate(map, btnAddReserve);
 
         if (keyEvent.getCode() == KeyCode.ENTER) {
             Object response = ValidateUtil.validate(map, btnAddReserve);

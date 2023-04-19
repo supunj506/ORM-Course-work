@@ -51,7 +51,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXButton layoutX="224.0" layoutY="279.0" onAction="#addRoomOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="ADD">
+      <JFXButton fx:id="btnAddRoom" layoutX="224.0" layoutY="279.0" onAction="#addRoomOnAction" onKeyReleased="#keyReleasedOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="ADD">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -59,7 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="401.0" layoutY="279.0" onAction="#UpdateRoomOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Update">
+      <JFXButton fx:id="btnUpdateRoom" layoutX="401.0" layoutY="279.0" onAction="#UpdateRoomOnAction" onKeyReleased="#keyReleasedOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Update">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -67,7 +67,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="578.0" layoutY="279.0" onAction="#deleteRoomOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Delete">
+      <JFXButton layoutX="578.0" layoutY="279.0" onAction="#deleteRoomOnAction" onKeyReleased="#keyReleasedOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Delete">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

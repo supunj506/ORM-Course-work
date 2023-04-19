@@ -7,6 +7,7 @@
  */
 package lk.ccns.d24.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -16,14 +17,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ccns.d24.bo.BOFactory;
 import lk.ccns.d24.bo.Custom.ManageRoomBO;
 import lk.ccns.d24.bo.Custom.ManageStudentBO;
 import lk.ccns.d24.dto.StudentDTO;
+import lk.ccns.d24.util.ValidateUtil;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
+import java.util.regex.Pattern;
 
 public class ManageStudentFormController {
     private final ManageStudentBO manageStudentBO= (ManageStudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGE_STUDENT);
@@ -44,8 +50,22 @@ public class ManageStudentFormController {
     public TableColumn colContact;
     public TableColumn colDOB;
     public TableColumn colGender;
+    public JFXButton btnAddStudent;
+    public JFXButton btnUpdateStudent;
+    public JFXButton btnDeleteStudent;
+
+    LinkedHashMap<JFXTextField, Pattern> map=new LinkedHashMap<>();
 
     public void initialize(){
+        Pattern studentIDPattern = Pattern.compile("^(ST-)[0-9]{3,5}$");
+        Pattern namePattern=Pattern.compile("^[A-z ]{3,30}$");
+        Pattern addressPattern = Pattern.compile("^[A-z0-9/]{4,40}$");
+        Pattern contactPattern=Pattern.compile("^(\\+94|0)(70|71|72|75|76|77|78|51|52|66|81|54|63|67|65|26|25|27|32|37|21|23|24|35|45|91|47|41|55|57|36|11|33|31|34|38)[0-9]{7}$");
+        map.put(txtId, studentIDPattern);
+        map.put(txtName, namePattern);
+        map.put(txtAddress, addressPattern);
+        map.put(txtContact, contactPattern);
+
         cmbGenderDataLoad();
         loadStudentDataToTable();
         studentTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -59,6 +79,42 @@ public class ManageStudentFormController {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
         colDOB.setCellValueFactory(new PropertyValueFactory<>("dob"));
+    }
+
+    public void addStudentOnAction(ActionEvent actionEvent) {
+        try {
+            if(cmbGender.getValue()!=null &&dpDOB.getValue()!=(null)){
+                boolean isAdd=manageStudentBO.addStudent(getStudentDTO());
+                loadStudentDataToTable();
+                clearAllTextFieldOnAction(actionEvent);
+                new Alert(Alert.AlertType.CONFIRMATION, "Add Student Successfully...!!!").show();
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Empty Field Found Check Carefully...!!!").show();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void UpdateStudentOnAction(ActionEvent actionEvent) {
+        try {
+            boolean isUpdate=manageStudentBO.updateStudentData(getStudentDTO());
+            loadStudentDataToTable();
+            clearAllTextFieldOnAction(actionEvent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteStudentOnAction(ActionEvent actionEvent) {
+        try {
+            boolean isDelete=manageStudentBO.deleteStudent(getStudentDTO());
+            loadStudentDataToTable();
+            clearAllTextFieldOnAction(actionEvent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setDataForField(StudentDTO studentDTO) {
@@ -87,36 +143,6 @@ public class ManageStudentFormController {
     private void cmbGenderDataLoad() {
         cmbGender.getItems().add("Male");
         cmbGender.getItems().add("Female");
-    }
-
-    public void addStudentOnAction(ActionEvent actionEvent) {
-        try {
-            boolean isAdd=manageStudentBO.addStudent(getStudentDTO());
-            loadStudentDataToTable();
-            clearAllTextFieldOnAction(actionEvent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void UpdateStudentOnAction(ActionEvent actionEvent) {
-        try {
-            boolean isUpdate=manageStudentBO.updateStudentData(getStudentDTO());
-            loadStudentDataToTable();
-            clearAllTextFieldOnAction(actionEvent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteStudentOnAction(ActionEvent actionEvent) {
-        try {
-            boolean isDelete=manageStudentBO.deleteStudent(getStudentDTO());
-            loadStudentDataToTable();
-            clearAllTextFieldOnAction(actionEvent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void clearAllTextFieldOnAction(ActionEvent actionEvent) {
@@ -152,6 +178,19 @@ public class ManageStudentFormController {
                 txtContact.getText(),
                 dpDOB.getValue().toString()
         );
+
+    }
+
+    public void keyReleasedOnAction(KeyEvent keyEvent) {
+        ValidateUtil.validate(map,btnAddStudent);
+
+        if(keyEvent.getCode()== KeyCode.ENTER){
+            Object response=ValidateUtil.validate(map,btnAddStudent);
+            if(response instanceof JFXTextField){
+                JFXTextField txt=(JFXTextField)response;
+                txt.requestFocus();
+            }
+        }
 
     }
 
