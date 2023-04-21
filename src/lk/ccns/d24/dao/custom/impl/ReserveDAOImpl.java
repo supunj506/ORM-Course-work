@@ -50,11 +50,17 @@ public class ReserveDAOImpl implements ReserveDAO {
         return true;
     }
 
-
     @Override
-    public Reservation find(ID id) throws IOException {
-        return null;
+    public Reservation find(String s) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Reservation reservation = session.get(Reservation.class, s);
+        transaction.commit();
+        session.close();
+        return reservation;
+
     }
+
 
     @Override
     public List<Reservation> findAll() throws IOException {

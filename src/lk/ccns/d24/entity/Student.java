@@ -7,9 +7,14 @@
  */
 package lk.ccns.d24.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.*;
+import java.util.List;
+
+
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 public class Student {
     @Id
@@ -19,6 +24,9 @@ public class Student {
     private String address;
     private String contact;
     private String dob;
+
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
 
     public Student() {
     }

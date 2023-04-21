@@ -16,12 +16,10 @@ import java.io.IOException;
 import java.util.List;
 
 public interface LoginBO extends SuperBO {
-    User getUserData(String user_Name) throws IOException;
+    UserDTO getUserData(String user_Name) throws IOException;
     List<UserDTO> lordAllUser();
-    boolean updateUser(UserDTO userDTO);
+    boolean updateUser(UserDTO userDTO) throws IOException;
     boolean addUser(UserDTO userDTO) throws IOException;
-    boolean login(UserDTO userDTO)throws IOException;
-
-
-
+    UserDTO login(String userName)throws IOException;
+    UserDTO getOnlineUser() throws IOException;
 }

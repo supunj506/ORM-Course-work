@@ -43,7 +43,7 @@
                     </font>
                 </Label>
                 <Pane layoutX="33.0" layoutY="158.0" prefHeight="569.0" prefWidth="584.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-opacity: 100%;" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="158.0">
-                    <JFXTextField fx:id="txtUserName" focusColor="#073fe6" layoutX="13.0" layoutY="28.0" prefHeight="51.0" prefWidth="553.0" promptText="User Name" style="-fx-font-color: black;" unFocusColor="BLACK">
+                    <JFXTextField fx:id="txtUserName" focusColor="#073fe6" labelFloat="true" layoutX="13.0" layoutY="28.0" prefHeight="51.0" prefWidth="506.0" promptText="User Name" style="-fx-font-color: black;" unFocusColor="BLACK">
                         <font>
                             <Font size="24.0" />
                         </font>
@@ -54,19 +54,22 @@
                             <Glow />
                         </effect>
                     </JFXTextField>
-                    <JFXPasswordField fx:id="txtPassword" layoutX="9.0" layoutY="131.0" prefHeight="51.0" prefWidth="553.0" promptText="Password">
+                    <JFXPasswordField fx:id="txtPassword" focusColor="#073fe6" labelFloat="true" layoutX="9.0" layoutY="131.0" prefHeight="51.0" prefWidth="506.0" promptText="Password" unFocusColor="BLACK">
                         <font>
                             <Font size="24.0" />
                         </font>
                         <cursor>
                             <Cursor fx:constant="TEXT" />
                         </cursor>
+                  <effect>
+                     <Glow />
+                  </effect>
                     </JFXPasswordField>
-                    <ImageView fx:id="sowPasswordIcon" fitHeight="25.0" fitWidth="50.0" layoutX="530.0" layoutY="144.0" onMouseClicked="#viewPasswordOnAction" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="showPasswordIcon" fitHeight="36.0" fitWidth="36.0" layoutX="519.0" layoutY="133.0" onMouseClicked="#viewPasswordOnAction" pickOnBounds="true" preserveRatio="true">
                         <cursor>
                             <Cursor fx:constant="HAND" />
                         </cursor>
-                        <Image url="@asset/stylesheet/icon/icons8-eye-24.png" />
+                        <Image url="@asset/stylesheet/icon/DontShowPassword.png" />
                     </ImageView>
                     <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="252.0" onAction="#loginOnAction" prefHeight="65.0" prefWidth="414.0" styleClass="buttonLogin" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Log in" textFill="WHITE">
                         <font>
@@ -89,20 +92,29 @@
                             <Font size="15.0" />
                         </font>
                     </Label>
-                    <Label layoutX="227.0" layoutY="495.0" onMouseClicked="#forgotPasswordOnAction" text="Forgot password?" textFill="#fffefe">
-                        <font>
-                            <Font size="16.0" />
-                        </font>
+                    <Line endX="111.66668701171875" layoutX="152.0" layoutY="360.0" startX="-67.66668701171875" />
+                    <Line endX="106.33331298828125" layoutX="392.0" layoutY="360.0" startX="-93.0" />
+               <JFXTextField fx:id="txtPasswordShow" focusColor="#073fe6" layoutX="9.0" layoutY="131.0" prefHeight="51.0" prefWidth="506.0" style="-fx-font-color: black;" unFocusColor="BLACK">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+                  <cursor>
+                     <Cursor fx:constant="TEXT" />
+                  </cursor>
+                  <effect>
+                     <Glow />
+                  </effect>
+               </JFXTextField>
+                    <ImageView fx:id="dontShowPasswordIcon" fitHeight="36.0" fitWidth="36.0" layoutX="519.0" layoutY="133.0" onMouseClicked="#dontViewPasswordOnAction" pickOnBounds="true" preserveRatio="true">
                         <cursor>
                             <Cursor fx:constant="HAND" />
                         </cursor>
-                    </Label>
-                    <Line endX="111.66668701171875" layoutX="152.0" layoutY="360.0" startX="-67.66668701171875" />
-                    <Line endX="106.33331298828125" layoutX="392.0" layoutY="360.0" startX="-93.0" />
-                    <Pane fx:id="signUpPane" layoutX="-230.0" layoutY="-86.0" prefHeight="630.0" prefWidth="562.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-color: black; -fx-border-radius: 30;">
-                        <JFXTextField fx:id="txtSignUserName" focusColor="#073fe6" layoutX="81.0" layoutY="183.0" prefHeight="51.0" prefWidth="400.0" promptText="User Name" style="-fx-font-color: black;" unFocusColor="BLACK">
+                        <Image url="@asset/stylesheet/icon/showPassword.png" />
+                    </ImageView>
+                    <Pane fx:id="signUpPane" layoutX="-197.0" layoutY="-30.0" prefHeight="630.0" prefWidth="506.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-color: black; -fx-border-radius: 30;">
+                        <JFXTextField fx:id="txtSignUserName" focusColor="#073fe6" labelFloat="true" layoutX="57.0" layoutY="124.0" onKeyReleased="#userNameKeyReleasedOnAction" prefHeight="51.0" prefWidth="373.0" promptText="User Name" style="-fx-font-color: black;" unFocusColor="BLACK">
                             <font>
-                                <Font size="24.0" />
+                                <Font name="System Bold" size="18.0" />
                             </font>
                             <cursor>
                                 <Cursor fx:constant="TEXT" />
@@ -111,34 +123,34 @@
                                 <Glow />
                             </effect>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtSignPassword" focusColor="#073fe6" layoutX="81.0" layoutY="278.0" prefHeight="51.0" prefWidth="400.0" promptText="Password" style="-fx-font-color: black;" unFocusColor="BLACK">
+                        <JFXTextField fx:id="txtShowSignPassword" focusColor="#073fe6" layoutX="57.0" layoutY="219.0" prefHeight="51.0" prefWidth="373.0" style="-fx-font-color: black;" unFocusColor="BLACK">
                             <font>
-                                <Font size="24.0" />
+                                <Font name="System Bold" size="18.0" />
                             </font>
                             <cursor>
-                                <Cursor fx:constant="TEXT" />
+                                <Cursor fx:constant="DEFAULT" />
                             </cursor>
                             <effect>
                                 <Glow />
                             </effect>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtSignRePassword" focusColor="#073fe6" layoutX="81.0" layoutY="365.0" prefHeight="51.0" prefWidth="400.0" promptText="Re-Enter Passwoard" style="-fx-font-color: black;" unFocusColor="BLACK">
+                        <JFXTextField fx:id="txtShowSignRePassword" focusColor="#073fe6" layoutX="57.0" layoutY="306.0" prefHeight="51.0" prefWidth="373.0" style="-fx-font-color: black;" unFocusColor="BLACK">
                             <font>
-                                <Font size="24.0" />
+                                <Font name="System Bold" size="18.0" />
                             </font>
                             <cursor>
-                                <Cursor fx:constant="TEXT" />
+                                <Cursor fx:constant="DEFAULT" />
                             </cursor>
                             <effect>
                                 <Glow />
                             </effect>
                         </JFXTextField>
-                        <Label layoutX="184.0" layoutY="54.0" prefHeight="79.0" prefWidth="180.0" text="Sign Up">
+                        <Label layoutX="187.0" layoutY="65.0" prefHeight="45.0" prefWidth="114.0" text="Sign Up">
                             <font>
-                                <Font name="System Bold" size="46.0" />
+                                <Font name="System Bold" size="30.0" />
                             </font>
                         </Label>
-                        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="67.0" layoutY="505.0" onAction="#signupOnAction" prefHeight="65.0" prefWidth="414.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Sign up">
+                        <JFXButton fx:id="btnSignUp" alignment="CENTER" buttonType="RAISED" layoutX="80.0" layoutY="511.0" onAction="#signupOnAction" prefHeight="51.0" prefWidth="326.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Sign up">
                             <font>
                                 <Font size="25.0" />
                             </font>
@@ -149,11 +161,42 @@
                         <ImageView fitHeight="51.0" fitWidth="162.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" smooth="false">
                             <Image url="@asset/logo/d24_logo.png" />
                         </ImageView>
-                  <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="512.0" layoutY="14.0" onMouseClicked="#closeSignUpPane" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@asset/stylesheet/icon/icons8-close-48.png" />
-                     </image>
-                  </ImageView>
+                        <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="456.0" layoutY="14.0" onMouseClicked="#closeSignUpPane" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@asset/stylesheet/icon/icons8-close-48.png" />
+                        </ImageView>
+                  <JFXTextField fx:id="txtSignInEmail" focusColor="#073fe6" labelFloat="true" layoutX="57.0" layoutY="403.0" onKeyReleased="#emailKeyReleasedOnAction" prefHeight="51.0" prefWidth="373.0" promptText="Email" style="-fx-font-color: black;" unFocusColor="BLACK">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </JFXTextField>
+                  <JFXPasswordField fx:id="txtSigninPassword" labelFloat="true" layoutX="57.0" layoutY="219.0" onKeyReleased="#passwordKeyReleasedOnAction" prefHeight="51.0" prefWidth="373.0" promptText="Password">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXPasswordField>
+                  <JFXPasswordField fx:id="txtSigninRePassword" labelFloat="true" layoutX="57.0" layoutY="306.0" onKeyReleased="#passwordKeyReleasedOnAction" prefHeight="51.0" prefWidth="373.0" promptText="Re-Enter Password">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXPasswordField>
+                        <ImageView fx:id="dontShowSigninPasswordIcon" fitHeight="36.0" fitWidth="36.0" layoutX="434.0" layoutY="235.0" onMouseClicked="#dontViewSigninPasswordOnAction" pickOnBounds="true" preserveRatio="true">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <Image url="@asset/stylesheet/icon/showPassword.png" />
+                        </ImageView>
+                        <ImageView fx:id="showSigninPasswordIcon" fitHeight="36.0" fitWidth="36.0" layoutX="434.0" layoutY="235.0" onMouseClicked="#viewSigninPasswordOnAction" pickOnBounds="true" preserveRatio="true">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <Image url="@asset/stylesheet/icon/DontShowPassword.png" />
+                        </ImageView>
                     </Pane>
                 </Pane>
             </AnchorPane>

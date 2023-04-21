@@ -11,5 +11,11 @@ package lk.ccns.d24.dao.custom;
 import lk.ccns.d24.dao.CrudDAO;
 import lk.ccns.d24.entity.User;
 
+import java.io.IOException;
+import java.util.List;
+
 public interface UserDAO extends CrudDAO<User,String> {
+
+    List<User> getOnlineUser() throws IOException;
+
 }

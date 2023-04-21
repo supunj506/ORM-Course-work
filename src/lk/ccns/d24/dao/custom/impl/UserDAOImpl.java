@@ -8,12 +8,16 @@
 package lk.ccns.d24.dao.custom.impl;
 
 import lk.ccns.d24.dao.custom.UserDAO;
+import lk.ccns.d24.entity.CustomEntity;
 import lk.ccns.d24.entity.User;
 import lk.ccns.d24.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
@@ -66,5 +70,26 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public Session getSession() throws IOException {
         return null;
+    }
+
+    @Override
+    public List<User>  getOnlineUser() throws IOException {
+
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        String sql="SELECT u.user_name ,u.password ,u.email FROM User u  WHERE u.status='online'";
+        Query query = session.createQuery(sql);
+        List<Object[]> list = query.list();
+        List<User> all=new ArrayList<>();
+        for(Object[] objects:list){
+            all.add(new User(
+                    objects[0].toString(),
+                    objects[1].toString(),
+                    objects[2].toString(),
+                    "online"));
+
+        }
+        return all;
+
     }
 }

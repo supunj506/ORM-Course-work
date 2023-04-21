@@ -10,21 +10,17 @@ package lk.ccns.d24.dto;
 public class UserDTO {
     private String user_name;
     private String password;
+    private String email;
+    private String status;
 
     public UserDTO() {
     }
 
-    public UserDTO(String user_name, String password) {
+    public UserDTO(String user_name, String password, String email, String status) {
         this.user_name = user_name;
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                "user_name='" + user_name + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        this.email = email;
+        this.status = status;
     }
 
     public String getUser_name() {
@@ -41,5 +37,21 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

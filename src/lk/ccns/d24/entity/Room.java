@@ -7,8 +7,11 @@
  */
 package lk.ccns.d24.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Room {
@@ -18,6 +21,9 @@ public class Room {
     private double key_money;
     private int qty;
 
+    @OneToMany(mappedBy = "room",cascade = CascadeType.ALL)
+    private List<Reservation> roomDetails;
+
     public Room() {
     }
 
@@ -26,16 +32,6 @@ public class Room {
         this.type = type;
         this.key_money = key_money;
         this.qty = qty;
-    }
-
-    @Override
-    public String toString() {
-        return "Room{" +
-                "room_id='" + room_id + '\'' +
-                ", type='" + type + '\'' +
-                ", key_money=" + key_money +
-                ", qty=" + qty +
-                '}';
     }
 
     public String getRoom_id() {

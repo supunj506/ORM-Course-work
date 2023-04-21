@@ -12,100 +12,93 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="manageRoomAP" prefHeight="691.0" prefWidth="939.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ccns.d24.controller.ManageRoomFormController">
-   <children>
-      <Pane layoutX="178.0" prefHeight="43.0" prefWidth="424.0" style="-fx-background-color: #FDA7DF; -fx-border-radius: 30; -fx-background-radius: 30;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label layoutX="375.0" layoutY="4.0" text="Manage Rooms">
-               <font>
-                  <Font name="System Bold Italic" size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <JFXTextField fx:id="txtRoomId" labelFloat="true" layoutX="38.0" layoutY="103.0" prefHeight="39.0" prefWidth="173.0" promptText="Room ID" AnchorPane.leftAnchor="38.0" AnchorPane.topAnchor="103.0">
+   <Pane layoutX="178.0" prefHeight="43.0" prefWidth="424.0" style="-fx-background-color: #FDA7DF; -fx-border-radius: 30; -fx-background-radius: 30;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label layoutX="375.0" layoutY="4.0" text="Manage Rooms">
          <font>
-            <Font name="System Bold" size="16.0" />
+            <Font name="System Bold Italic" size="22.0" />
          </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </JFXTextField>
-      <JFXComboBox fx:id="cmbRoomType" layoutX="256.0" layoutY="103.0" prefHeight="39.0" prefWidth="173.0" promptText="Room Type" style="-fx-font-size: 16;" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="103.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXComboBox>
-      <JFXTextField fx:id="txtKeyMoney" labelFloat="true" layoutX="497.0" layoutY="103.0" prefHeight="39.0" prefWidth="173.0" promptText="Key Money" AnchorPane.leftAnchor="497.0" AnchorPane.topAnchor="103.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </JFXTextField>
-      <JFXTextField fx:id="txtRoomQTY" labelFloat="true" layoutX="670.0" layoutY="103.0" prefHeight="39.0" prefWidth="173.0" promptText="Rooms(QTY)" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="103.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </JFXTextField>
-      <JFXButton fx:id="btnAddRoom" layoutX="224.0" layoutY="279.0" onAction="#addRoomOnAction" onKeyReleased="#keyReleasedOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="ADD">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton fx:id="btnUpdateRoom" layoutX="401.0" layoutY="279.0" onAction="#UpdateRoomOnAction" onKeyReleased="#keyReleasedOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Update">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton layoutX="578.0" layoutY="279.0" onAction="#deleteRoomOnAction" onKeyReleased="#keyReleasedOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Delete">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton layoutX="754.0" layoutY="279.0" onAction="#clearAllTextFieldOnAction" prefHeight="48.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Clear">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton layoutX="263.0" layoutY="195.0" onAction="#searchRoomByIdOnAction" prefHeight="39.0" prefWidth="113.0" style="-fx-background-color: #D980FA; -fx-background-radius: 30;" text="Search">
-         <font>
-            <Font size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXTextField fx:id="txtSearchByRoomId" labelFloat="true" layoutX="400.0" layoutY="195.0" prefHeight="39.0" prefWidth="254.0" promptText="By Room ID">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </JFXTextField>
-      <TableView fx:id="roomTableView" layoutX="40.0" layoutY="346.0" prefHeight="328.0" prefWidth="861.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
-        <columns>
-          <TableColumn fx:id="colRoomId" prefWidth="231.0" style="-fx-font-size: 16;" text="Room ID" />
-            <TableColumn fx:id="colRoomType" prefWidth="231.0" style="-fx-font-size: 16;" text="Room Type" />
-            <TableColumn fx:id="colKeyMoney" prefWidth="209.0" style="-fx-font-size: 16;" text="Key Money" />
-            <TableColumn fx:id="colQTY" prefWidth="189.0" style="-fx-font-size: 16;" text="QTY" />
-        </columns>
-      </TableView>
-   </children>
+      </Label>
+   </Pane>
+   <JFXTextField fx:id="txtRoomId" labelFloat="true" layoutX="38.0" layoutY="103.0" onKeyReleased="#IdKeyReleasedOnAction" prefHeight="39.0" prefWidth="173.0" promptText="Room ID (RM-###)" AnchorPane.leftAnchor="38.0" AnchorPane.topAnchor="103.0">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="TEXT" />
+      </cursor>
+   </JFXTextField>
+   <JFXComboBox fx:id="cmbRoomType" layoutX="256.0" layoutY="103.0" prefHeight="39.0" prefWidth="173.0" promptText="Room Type" style="-fx-font-size: 16;" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="103.0">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </JFXComboBox>
+   <JFXTextField fx:id="txtKeyMoney" labelFloat="true" layoutX="497.0" layoutY="103.0" onKeyReleased="#keyMoneyKeyReleasedOnAction" prefHeight="39.0" prefWidth="173.0" promptText="Key Money" AnchorPane.leftAnchor="497.0" AnchorPane.topAnchor="103.0">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="TEXT" />
+      </cursor>
+   </JFXTextField>
+   <JFXTextField fx:id="txtRoomQTY" labelFloat="true" layoutX="670.0" layoutY="103.0" onKeyReleased="#roomQTYKeyReleasedOnAction" prefHeight="39.0" prefWidth="173.0" promptText="Rooms(QTY)" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="103.0">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="TEXT" />
+      </cursor>
+   </JFXTextField>
+   <JFXButton fx:id="btnAddRoom" layoutX="224.0" layoutY="279.0" onAction="#addRoomOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="ADD">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </JFXButton>
+   <JFXButton fx:id="btnUpdateRoom" layoutX="401.0" layoutY="279.0" onAction="#UpdateRoomOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Update">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </JFXButton>
+   <JFXButton fx:id="btnDeleteRoom" layoutX="578.0" layoutY="279.0" onAction="#deleteRoomOnAction" prefHeight="21.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Delete">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </JFXButton>
+   <JFXButton layoutX="754.0" layoutY="279.0" onAction="#clearAllTextFieldOnAction" prefHeight="48.0" prefWidth="147.0" styleClass="buttonSignup" stylesheets="@asset/stylesheet/styleForLoginForm.css" text="Clear">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </JFXButton>
+   <JFXTextField fx:id="txtSearchByRoomId" labelFloat="true" layoutX="400.0" layoutY="195.0" onKeyReleased="#searchIdKeyReleasedOnAction" prefHeight="39.0" prefWidth="254.0" promptText="By Room ID">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="TEXT" />
+      </cursor>
+   </JFXTextField>
+   <TableView fx:id="roomTableView" layoutX="40.0" layoutY="346.0" prefHeight="328.0" prefWidth="861.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+      <columns>
+         <TableColumn fx:id="colRoomId" prefWidth="231.0" style="-fx-font-size: 16;" text="Room ID" />
+         <TableColumn fx:id="colRoomType" prefWidth="231.0" style="-fx-font-size: 16;" text="Room Type" />
+         <TableColumn fx:id="colKeyMoney" prefWidth="209.0" style="-fx-font-size: 16;" text="Key Money" />
+         <TableColumn fx:id="colQTY" prefWidth="189.0" style="-fx-font-size: 16;" text="QTY" />
+      </columns>
+   </TableView>
+   <JFXButton fx:id="btnSearchId" layoutX="275.0" layoutY="195.0" onAction="#searchRoomByIdOnAction" prefHeight="39.0" prefWidth="113.0" style="-fx-background-color: #D980FA; -fx-background-radius: 30;" text="Search">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+   </JFXButton>
 </AnchorPane>

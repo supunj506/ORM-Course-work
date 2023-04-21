@@ -8,7 +8,6 @@
 package lk.ccns.d24.dao.custom.impl;
 
 import lk.ccns.d24.dao.custom.RoomDAO;
-import lk.ccns.d24.dto.RoomDTO;
 import lk.ccns.d24.entity.Room;
 import lk.ccns.d24.util.FactoryConfiguration;
 import org.hibernate.Session;
@@ -63,7 +62,7 @@ public class RoomDAOImpl implements RoomDAO {
     public List<Room> findAll() throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        List<Room> roomList=null;
+        List<Room> roomList;
         Query from_room = session.createQuery("from Room");
         roomList=from_room.list();
         transaction.commit();

@@ -9,6 +9,7 @@ package lk.ccns.d24.bo.Custom.impl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import lk.ccns.d24.bo.Custom.ManageReserveBO;
 import lk.ccns.d24.dao.DAOFactory;
 import lk.ccns.d24.dao.custom.QueryDAO;
@@ -91,8 +92,16 @@ public class ManageReserveBOImpl implements ManageReserveBO {
         return count;
     }
 
+    @Override
+    public ReservationDTO checkExistsReserve(String id) throws IOException {
+        return getReserveDTO(reserveDAO.find(id));
+
+    }
 
     private ReservationDTO getReserveDTO(Reservation reservation) {
+        if(reservation==null){
+            return null;
+        }
         return new ReservationDTO(
                 reservation.getRes_id(),
                 reservation.getDate(),

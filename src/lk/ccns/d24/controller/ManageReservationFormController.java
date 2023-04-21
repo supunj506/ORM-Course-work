@@ -13,14 +13,10 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ccns.d24.bo.BOFactory;
 import lk.ccns.d24.bo.Custom.ManageReserveBO;
@@ -29,10 +25,12 @@ import lk.ccns.d24.bo.Custom.ManageStudentBO;
 import lk.ccns.d24.dto.ReservationDTO;
 import lk.ccns.d24.dto.RoomDTO;
 import lk.ccns.d24.dto.StudentDTO;
+import lk.ccns.d24.util.Navigation;
+import lk.ccns.d24.util.Routes;
 import lk.ccns.d24.util.ValidateUtil;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 
@@ -57,19 +55,18 @@ public class ManageReservationFormController {
     public JFXTextField txtType;
     public JFXDatePicker dpReserveDate;
     public TableView<ReservationDTO> reservationTableView;
-    public TableColumn colId;
-    public TableColumn colDate;
-    public TableColumn colStudentId;
-    public TableColumn colRoomId;
-    public TableColumn colStatus;
+    public TableColumn <ReservationDTO,String>colId;
+    public TableColumn <ReservationDTO, LocalDate> colDate;
+    public TableColumn <ReservationDTO,String> colStudentId;
+    public TableColumn <ReservationDTO,String> colRoomId;
+    public TableColumn <ReservationDTO,String> colStatus;
     public JFXTextField txtRoomQTY;
     public JFXButton btnAddReserve;
-
-    LinkedHashMap<JFXTextField, Pattern> map = new LinkedHashMap<>();
+    public JFXButton btnUpdate;
+    public JFXButton btnDelete;
+    public JFXButton btnClear;
 
     public void initialize() {
-        Pattern reserveIdPattern = Pattern.compile("^(RS-)[0-9]{3,5}$");
-        map.put(txtReservationId, reserveIdPattern);
 
         setCmbData();
         setCmbStudentIdRoomIDData();
@@ -84,7 +81,6 @@ public class ManageReservationFormController {
         txtQTY.setEditable(false);
         txtKeyMoney.setEditable(false);
 
-        btnAddReserve.setDisable(true);
 
         reservationTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -101,35 +97,102 @@ public class ManageReservationFormController {
 
     }
 
-    public void makeReserveOnAction(ActionEvent actionEvent) {
+    public void makeReserveOnAction() {
+
         try {
-            if (cmbPayStatus.getValue() != null &&
-                    cmbRoomID.getValue() != null &&
-                    cmbStudentID.getValue() != null &&
-                    !txtRoomQTY.getText().trim().isEmpty()) {
-                if (Integer.parseInt(txtRoomQTY.getText()) > Integer.parseInt(txtQTY.getText())) {
-                    new Alert(Alert.AlertType.ERROR, "That Much Quantity Doesn't Exist..!!!").show();
-                }else {
-                    boolean isSave = manageReserveBO.saveReserve(getReservationDTO());
-                    if (isSave) {
-                        Boolean isUpdateQTY = manageRoomBO.update(new RoomDTO(
-                                cmbRoomID.getValue(),
-                                txtType.getText(),
-                                Double.parseDouble(txtKeyMoney.getText()),
-                                Integer.parseInt(txtQTY.getText()) - Integer.parseInt(txtRoomQTY.getText())
-                        ));
-                        cleanAll();
-                        loadReservationDetailsToTable();
-                        new Alert(Alert.AlertType.CONFIRMATION, "Make A Reservation Successfully...!!!").show();
+            if(manageReserveBO.checkExistsReserve(txtReservationId.getText())==null) {
+                if (cmbPayStatus.getValue() != null &&
+                        cmbRoomID.getValue() != null &&
+                        cmbStudentID.getValue() != null &&
+                        !txtRoomQTY.getText().trim().isEmpty()){
+                    if (Integer.parseInt(txtRoomQTY.getText()) > Integer.parseInt(txtQTY.getText())) {
+                        new Alert(Alert.AlertType.ERROR, "That Much Quantity Doesn't Exist..!!!").show();
+                    }else {
+                        boolean isSave = manageReserveBO.saveReserve(getReservationDTO());
+                        if (isSave) {
+                            manageRoomBO.update(new RoomDTO(
+                                    cmbRoomID.getValue(),
+                                    txtType.getText(),
+                                    Double.parseDouble(txtKeyMoney.getText()),
+                                    Integer.parseInt(txtQTY.getText()) - Integer.parseInt(txtRoomQTY.getText())
+                            ));
+                            cleanTextFieldOnAction();
+                            loadReservationDetailsToTable();
+                            new Alert(Alert.AlertType.CONFIRMATION, "Make A Reservation Successfully...!!!").show();
+                        }
                     }
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "Empty Field Found Check Carefully !!!").show();
                 }
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Empty Field Found Check Carefully !!!").show();
+            }else {
+
+                new Alert(Alert.AlertType.ERROR, "Reserve Already Exist ON This ID...!!!").show();
+
+
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void updateReserveOnAction() {
+        try {
+            if(manageReserveBO.checkExistsReserve(txtReservationId.getText())==null) {
+                new Alert(Alert.AlertType.ERROR, "That Reserve is Not In The System...!!!").show();
+
+            }else {
+                if (cmbPayStatus.getValue() != null && cmbRoomID.getValue() != null && cmbStudentID.getValue() != null && !txtRoomQTY.getText().trim().isEmpty()) {
+                    boolean isUpdate = manageReserveBO.updateReserveData(
+                            new ReservationDTO(
+                                    txtReservationId.getText(),
+                                    dpReserveDate.getValue(),
+                                    cmbStudentID.getValue(),
+                                    cmbRoomID.getValue(),
+                                    cmbPayStatus.getValue()
+
+                            ));
+                    if (isUpdate) {
+                        cleanTextFieldOnAction();
+                        loadReservationDetailsToTable();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Update Reserve Data Successfully...!!!").show();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Empty Field Found Check Carefully !!!").show();
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteReserveOnAction() {
+        try {
+            if(manageReserveBO.checkExistsReserve(txtReservationId.getText())==null) {
+                new Alert(Alert.AlertType.ERROR, "That Reserve is Not In The System...!!!").show();
+
+            }else {
+
+                if (cmbPayStatus.getValue() != null &&
+                        cmbRoomID.getValue() != null &&
+                        cmbStudentID.getValue() != null &&
+                        !txtRoomQTY.getText().trim().isEmpty()) {
+                    boolean isDelete = manageReserveBO.deleteReserveData(getReserveDTO());
+                    cleanTextFieldOnAction();
+                    loadReservationDetailsToTable();
+                    if (isDelete) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Delete Reserve Data Successfully...!!!").show();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Empty Field Found Check Carefully !!!").show();
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setReserveDataToField(ReservationDTO newValue) {
@@ -199,59 +262,37 @@ public class ManageReservationFormController {
         cmbPayStatus.getItems().add("Later");
     }
 
-    public void addNewStudentOnAction(MouseEvent mouseEvent) {
-
-    }
-
-    private ReservationDTO getReservationDTO() {
-        return new ReservationDTO(
-                txtReservationId.getText(),
-                cmbStudentID.getValue(),
-                cmbRoomID.getValue(),
-                cmbPayStatus.getValue()
-        );
-    }
-
-    public void cleanTextFieldOnAction(MouseEvent mouseEvent) {
-        cleanAll();
-    }
-
-    public void selectStudentIdOnAction(ActionEvent actionEvent) {
-
-        setStudentDetails(cmbStudentID.getValue());
-    }
-
-    public void selectRoomIdOnAction(ActionEvent actionEvent) {
-        setRoomDetails(cmbRoomID.getValue());
-    }
-
-    public void updateReserveOnAction(MouseEvent mouseEvent) {
-        try {
-            boolean isUpdate = manageReserveBO.updateReserveData(
-                    new ReservationDTO(
-                            txtReservationId.getText(),
-                            dpReserveDate.getValue(),
-                            cmbStudentID.getValue(),
-                            cmbRoomID.getValue(),
-                            cmbPayStatus.getValue()
-
-                    )
-            );
-            cleanTextFieldOnAction(mouseEvent);
-            loadReservationDetailsToTable();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void selectStudentIdOnAction() {
+        if(cmbStudentID.getValue()!=null) {
+            setStudentDetails(cmbStudentID.getValue());
         }
     }
 
-    public void deleteReserveOnAction(MouseEvent mouseEvent) {
+    public void selectRoomIdOnAction() {
+        if(cmbRoomID.getValue()!=null){
+            setRoomDetails(cmbRoomID.getValue());
+        }
+    }
+
+    public void addNewStudentOnAction() {
         try {
-            boolean isDelete = manageReserveBO.deleteReserveData(getReserveDTO());
-            cleanTextFieldOnAction(mouseEvent);
-            loadReservationDetailsToTable();
+            Navigation.navigate(Routes.MANAGE_STUDENT,reservationAP);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void keyReleasedOnAction() {
+        setButtonStatus(ValidateUtil.singleValidate(Pattern.compile("^(RS-)[0-9]{3,5}$"),txtReservationId));
+    }
+
+    private void setButtonStatus(boolean singleValidate) {
+
+        btnAddReserve.setDisable(singleValidate);
+        btnUpdate.setDisable(singleValidate);
+        btnDelete.setDisable(singleValidate);
+
     }
 
     private ReservationDTO getReserveDTO() {
@@ -263,30 +304,26 @@ public class ManageReservationFormController {
         );
     }
 
-    public void keyReleasedOnAction(KeyEvent keyEvent) {
-        ValidateUtil.validate(map, btnAddReserve);
-
-        if (keyEvent.getCode() == KeyCode.ENTER) {
-            Object response = ValidateUtil.validate(map, btnAddReserve);
-            if (response instanceof JFXTextField) {
-                JFXTextField txt = (JFXTextField) response;
-                txt.requestFocus();
-            }
-
-        }
+    private ReservationDTO getReservationDTO() {
+        return new ReservationDTO(
+                txtReservationId.getText(),
+                cmbStudentID.getValue(),
+                cmbRoomID.getValue(),
+                cmbPayStatus.getValue()
+        );
     }
 
-    private void cleanAll() {
+    public void cleanTextFieldOnAction() {
         txtReservationId.clear();
         cmbPayStatus.setValue(null);
         dpReserveDate.setValue(null);
-        cmbStudentID.setValue(null);
+        cmbStudentID.getSelectionModel().clearSelection();
         txtName.clear();
         txtAddress.clear();
         txtContact.clear();
         txtDOB.clear();
         txtGender.clear();
-        cmbRoomID.setValue(null);
+        cmbRoomID.getSelectionModel().clearSelection();
         txtType.clear();
         txtQTY.clear();
         txtKeyMoney.clear();

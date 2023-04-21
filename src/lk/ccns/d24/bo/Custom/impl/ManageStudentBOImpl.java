@@ -64,6 +64,9 @@ public class ManageStudentBOImpl implements ManageStudentBO {
     }
 
     private StudentDTO getStudentDTO(Student student){
+        if(student==null){
+            return null;
+        }
         return new StudentDTO(
                 student.getStudent_id(),
                 student.getName(),

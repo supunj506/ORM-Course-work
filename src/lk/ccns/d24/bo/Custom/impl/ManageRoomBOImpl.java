@@ -19,17 +19,18 @@ import java.io.IOException;
 import java.util.List;
 
 public class ManageRoomBOImpl implements ManageRoomBO {
-    private final RoomDAO roomDAO=(RoomDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ROOM);
+    private final RoomDAO roomDAO = (RoomDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ROOM);
+
     @Override
     public boolean add(RoomDTO roomDTO) throws IOException {
-       return roomDAO.add(getRoomEntity(roomDTO));
+        return roomDAO.add(getRoomEntity(roomDTO));
     }
 
     @Override
     public ObservableList<RoomDTO> getAllData() throws IOException {
         List<Room> all = roomDAO.findAll();
-        ObservableList<RoomDTO> obRoomList= FXCollections.observableArrayList();
-        for(Room room:all){
+        ObservableList<RoomDTO> obRoomList = FXCollections.observableArrayList();
+        for (Room room : all) {
             obRoomList.add(getRoomDTO(room));
         }
         return obRoomList;
@@ -42,7 +43,7 @@ public class ManageRoomBOImpl implements ManageRoomBO {
 
     @Override
     public RoomDTO findById(String roomId) throws IOException {
-         return getRoomDTO(roomDAO.find(roomId));
+        return getRoomDTO(roomDAO.find(roomId));
     }
 
     @Override
@@ -51,11 +52,19 @@ public class ManageRoomBOImpl implements ManageRoomBO {
     }
 
 
-    private Room getRoomEntity(RoomDTO roomDTO){
-        return new Room(roomDTO.getRoom_id(),roomDTO.getType(),roomDTO.getKey_money(),roomDTO.getQty());
+    private Room getRoomEntity(RoomDTO roomDTO) {
+        return new Room(roomDTO.getRoom_id(), roomDTO.getType(), roomDTO.getKey_money(), roomDTO.getQty());
     }
 
-    private RoomDTO getRoomDTO(Room room){
-        return new RoomDTO(room.getRoom_id(), room.getType(), room.getKey_money(), room.getQty());
+    private RoomDTO getRoomDTO(Room room) {
+        if (room == null) {
+            return null;
+        }
+        return new RoomDTO(
+                room.getRoom_id(),
+                room.getType(),
+                room.getKey_money(),
+                room.getQty()
+        );
     }
 }

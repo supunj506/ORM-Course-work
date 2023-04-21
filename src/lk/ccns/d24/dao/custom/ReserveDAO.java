@@ -8,9 +8,8 @@
 
 package lk.ccns.d24.dao.custom;
 
-import com.sun.xml.bind.v2.model.core.ID;
 import lk.ccns.d24.dao.CrudDAO;
 import lk.ccns.d24.entity.Reservation;
 
-public interface ReserveDAO extends CrudDAO<Reservation, ID> {
+public interface ReserveDAO extends CrudDAO<Reservation, String> {
 }
